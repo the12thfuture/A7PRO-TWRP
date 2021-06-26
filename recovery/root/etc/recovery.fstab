@@ -1,0 +1,62 @@
+# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6763/fstab.in.mt6763"
+# 1 "<built-in>" 1
+# 1 "<built-in>" 3
+# 350 "<built-in>" 3
+# 1 "<command line>" 1
+# 1 "<built-in>" 2
+# 1 "vendor/mediatek/proprietary/hardware/fstab/mt6763/fstab.in.mt6763" 2
+# 127 "vendor/mediatek/proprietary/hardware/fstab/mt6763/fstab.in.mt6763"
+
+# 151 "vendor/mediatek/proprietary/hardware/fstab/mt6763/fstab.in.mt6763"
+
+
+/devices/bootdevice*               auto            vfat        defaults voldmanaged=sdcard0:auto
+/devices/platform/externdevice*    auto            auto        defaults voldmanaged=sdcard1:auto,encryptable=userdata
+/devices/platform/mt_usb*          auto            vfat        defaults voldmanaged=usbotg:auto
+
+# mount point	             fstype               	device					device2				flags
+/metadata                    ext4 /dev/block/platform/bootdevice/by-name/md_udc                 noatime,nosuid,nodev,discard wait,first_stage_mount
+/data                        ext4 /dev/block/platform/bootdevice/by-name/userdata               noatime,nosuid,nodev,noauto_da_alloc,errors=panic wait,check,formattable,quota,reservedsize=128m,formattable,resize,checkpoint=block,fileencryption=aes-256-xts
+/cache                       ext4 /dev/block/platform/bootdevice/by-name/cache                  noatime,nosuid,nodev,noauto_da_alloc,discard wait,check,formattable
+/mnt/vendor/protect_f        ext4 /dev/block/platform/bootdevice/by-name/protect1               noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,
+/mnt/vendor/protect_s        ext4 /dev/block/platform/bootdevice/by-name/protect2               noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,
+/mnt/vendor/nvdata           ext4 /dev/block/platform/bootdevice/by-name/nvdata                 noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,
+/nvcfg                       ext4 /dev/block/platform/bootdevice/by-name/mnt/vendor/nvcfg       noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,
+/persist                     ext4 /dev/block/platform/bootdevice/by-name/mnt/vendor/persist     noatime,nosuid,nodev,noauto_da_alloc,commit=1,nodelalloc wait,check,
+/frp                         emmc /dev/block/platform/bootdevice/by-name/persistent             defaults defaults
+/teksunhw                    emmc /dev/block/platform/bootdevice/by-name/teksunhw               defaults defaults
+/nvram                       emmc /dev/block/platform/bootdevice/by-name/nvram                  defaults defaults
+/proinfo                     emmc /dev/block/platform/bootdevice/by-name/proinfo                defaults defaults
+/lk                          emmc /dev/block/platform/bootdevice/by-name/bootloader             defaults defaults
+/lk2                         emmc /dev/block/platform/bootdevice/by-name/bootloader2            defaults defaults
+/para                        emmc /dev/block/platform/bootdevice/by-name/misc                   defaults defaults
+/recovery                    emmc /dev/block/platform/bootdevice/by-name/recovery               defaults first_stage_mount,nofail,
+/boot                        emmc /dev/block/platform/bootdevice/by-name/boot                   defaults first_stage_mount,nofail,
+/vbmeta_vendor               emmc /dev/block/platform/bootdevice/by-name/vbmeta_vendor          defaults first_stage_mount,nofail,
+/vbmeta_system               emmc /dev/block/platform/bootdevice/by-name/vbmeta_system          defaults first_stage_mount,nofail,,avb=vbmeta
+/logo                        emmc /dev/block/platform/bootdevice/by-name/logo                   defaults defaults
+/expdb                       emmc /dev/block/platform/bootdevice/by-name/expdb                  defaults defaults
+/seccfg                      emmc /dev/block/platform/bootdevice/by-name/seccfg                 defaults defaults
+/tee1                        emmc /dev/block/platform/bootdevice/by-name/tee1                   defaults defaults
+/tee2                        emmc /dev/block/platform/bootdevice/by-name/tee2                   defaults defaults
+/sspm_1                      emmc /dev/block/platform/bootdevice/by-name/sspm_1                 defaults defaults
+/sspm_2                      emmc /dev/block/platform/bootdevice/by-name/sspm_2                 defaults defaults
+/md1img                      emmc /dev/block/platform/bootdevice/by-name/md1img                 defaults defaults
+/md1dsp                      emmc /dev/block/platform/bootdevice/by-name/md1dsp                 defaults defaults
+/md1arm7                     emmc /dev/block/platform/bootdevice/by-name/md1arm7                defaults defaults
+/md3img                      emmc /dev/block/platform/bootdevice/by-name/md3img                 defaults defaults
+/gz1                         emmc /dev/block/platform/bootdevice/by-name/gz1                    defaults defaults
+/gz2                         emmc /dev/block/platform/bootdevice/by-name/gz2                    defaults defaults
+/spmfw                       emmc /dev/block/platform/bootdevice/by-name/spmfw                  defaults defaults
+/boot_para                   emmc /dev/block/platform/bootdevice/by-name/boot_para              defaults defaults
+/odmdtbo                     emmc /dev/block/platform/bootdevice/by-name/odmdtbo                defaults defaults
+/dtbo                        emmc /dev/block/platform/bootdevice/by-name/dtbo                   defaults defaults
+/vbmeta                      emmc /dev/block/platform/bootdevice/by-name/vbmeta                 defaults defaults
+
+# SUPER PARTITION
+system        /system        ext4               ro wait,avb=vbmeta_system,logical,first_stage_mount,avb_keys=/avb/q-gsi.avbpubkey:/avb/r-gsi.avbpubkey:/avb/s-gsi.avbpubkey,
+vendor        /vendor        ext4               ro wait,avb,logical,first_stage_mount,
+product       /product       ext4               ro wait,avb,logical,first_stage_mount,
+odm			      /odm		       ext4	                        	display="Odm";logical
+
+/super     emmc    /dev/block/bootdevice/by-name/super       flags=backup=1;display="Super"
