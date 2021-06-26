@@ -1,0 +1,11 @@
+ro.product.brand=UMIDIGI
+ro.product.name=A7_Pro
+ro.product.device=A7_Pro
+ro.build.product=A7_Pro
+ro.treble.enabled=true
+
+persist.sys.isUsbOtgEnabled=true
+vendor.gatekeeper.disable_spu=true
+ro.boot.dynamic_partitions=true
+ro.adb.secure=0
+fbe.metadata.wrappedkey=true
